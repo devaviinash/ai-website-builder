@@ -1,7 +1,12 @@
-import React from "react";
+"use client";
+
+import { useTRPC } from "@/trpc/client";
+import { useQuery } from "@tanstack/react-query";
 
 const Page = () => {
-   return <div>Hello World!</div>;
+   const trpc = useTRPC();
+   const { data } = useQuery(trpc.createAI.queryOptions({ text: "Avinash" }));
+   return <div>{JSON.stringify(data)}</div>;
 };
 
 export default Page;
